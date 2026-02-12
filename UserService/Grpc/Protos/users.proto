@@ -1,0 +1,70 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "UserService.Protos";
+
+package users;
+
+service UserServiceGrpc {
+  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
+  rpc GetUserById (GetUserByIdRequest) returns (GetUserByIdResponse);
+  rpc GetUsersByName (GetUsersByNameRequest) returns (GetUsersByNameResponse);
+  rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse);
+  rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse);
+}
+
+message UserModel {
+  int32 id = 1;
+  string name = 2;
+  string surname = 3;
+  int32 age = 4;
+  string login = 5;
+}
+
+message CreateUserRequest {
+  string name = 1;
+  string surname = 2;
+  int32 age = 3;
+  string login = 4;
+  string password = 5;
+}
+
+message CreateUserResponse {
+  int32 id = 1;
+}
+
+message GetUserByIdRequest {
+  int32 id = 1;
+}
+
+message GetUserByIdResponse {
+  UserModel user = 1;
+}
+
+message GetUsersByNameRequest {
+  string name = 1;
+  string surname = 2;
+}
+
+message GetUsersByNameResponse {
+  repeated UserModel users = 1;
+}
+
+message UpdateUserRequest {
+  int32 id = 1;
+  string name = 2;
+  string surname = 3;
+  int32 age = 4;
+  string password = 5;
+}
+
+message UpdateUserResponse {
+  bool result = 1;
+}
+
+message DeleteUserRequest {
+  int32 id = 1;
+}
+
+message DeleteUserResponse {
+  bool result = 1;
+}
